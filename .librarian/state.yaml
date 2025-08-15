@@ -1,4 +1,4 @@
-image: gcr.io/cloud-devrel-public-resources/librarian-go:infrastructure-public-image-latest
+image: gcr.io/chingor-test/go-librariangen:latest
 libraries:
     - id: secretmanager
       version: 1.15.0
