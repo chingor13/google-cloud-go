@@ -21,8 +21,9 @@
 package secretmanagerpb
 
 import (
-	iampb "cloud.google.com/go/iam/apiv1/iampb"
 	context "context"
+
+	iampb "cloud.google.com/go/iam/apiv1/iampb"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -271,7 +272,7 @@ func (c *secretManagerServiceClient) TestIamPermissions(ctx context.Context, in 
 }
 
 // SecretManagerServiceServer is the server API for SecretManagerService service.
-// All implementations should embed UnimplementedSecretManagerServiceServer
+// All implementations must embed UnimplementedSecretManagerServiceServer
 // for forward compatibility
 type SecretManagerServiceServer interface {
 	// Lists [Secrets][google.cloud.secretmanager.v1.Secret].
@@ -343,9 +344,10 @@ type SecretManagerServiceServer interface {
 	// UIs and command-line tools, not for authorization checking. This operation
 	// may "fail open" without warning.
 	TestIamPermissions(context.Context, *iampb.TestIamPermissionsRequest) (*iampb.TestIamPermissionsResponse, error)
+	mustEmbedUnimplementedSecretManagerServiceServer()
 }
 
-// UnimplementedSecretManagerServiceServer should be embedded to have forward compatible implementations.
+// UnimplementedSecretManagerServiceServer must be embedded to have forward compatible implementations.
 type UnimplementedSecretManagerServiceServer struct {
 }
 
@@ -394,6 +396,7 @@ func (UnimplementedSecretManagerServiceServer) GetIamPolicy(context.Context, *ia
 func (UnimplementedSecretManagerServiceServer) TestIamPermissions(context.Context, *iampb.TestIamPermissionsRequest) (*iampb.TestIamPermissionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TestIamPermissions not implemented")
 }
+func (UnimplementedSecretManagerServiceServer) mustEmbedUnimplementedSecretManagerServiceServer() {}
 
 // UnsafeSecretManagerServiceServer may be embedded to opt out of forward compatibility for this service.
 // Use of this interface is not recommended, as added methods to SecretManagerServiceServer will
