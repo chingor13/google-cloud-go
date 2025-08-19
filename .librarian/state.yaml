@@ -2,7 +2,7 @@ image: gcr.io/chingor-test/go-librariangen:latest
 libraries:
     - id: secretmanager
       version: 1.15.0
-      last_generated_commit: 8fe8f9f460fe5dd1df95057659d2520ceca3c9c6
+      last_generated_commit: 74853d72427cb8b8be00737a17ba3becce0ee6b6
       apis:
         - path: google/cloud/secretmanager/v1
           service_config: secretmanager_v1.yaml
